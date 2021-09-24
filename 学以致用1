@@ -1,0 +1,64 @@
+/*
+  试用如何用一个语句打印以下格式的内容：
+  The NAME family just may be $XXX.XX dollars richer!
+  这里，NAME和XXX.XX代表程序中变量（如name[40]和cash）的值。可参考以下代码：
+  printf("The %s family just may be $%.2f dollarss richer!\n",name,cash);
+*/
+
+#include<stdio.h>
+
+#define NAME "Xiong Taoyu"
+
+int main(void)
+{
+    float cash;
+    
+    printf("The %s family just may be $%.2f dollars richs!\n", NAME, cash);
+    
+    return 0;
+}
+
+/*
+  运行显示：
+          1>------ 已启动生成: 项目: 98998, 配置: Debug Win32 ------
+          1>  98998.cpp
+          1>c:\users\xiong2\desktop\98998\98998\98998.cpp(9): warning C4305: “=”: 从“double”到“float”截断
+          1>  98998.vcxproj -> C:\Users\xiong2\Desktop\98998\Debug\98998.exe
+          ========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========
+*/
+
+/*
+  输出结果：
+          The Xiong Taoyu family just may be $546.16 dollars richer!
+          请按任意键继续. . .
+*/
+
+/*
+  代码改良：
+          将"float cash"中的"float"改成"double"，代码将变成:/*    #include<stdio.h>
+                                                               #define NAME "Xiong Taoyu"
+                                                               int main(void)
+                                                               {
+                                                                    double cash;   
+                                                                    printf("The %s family just may be $%.2f dollars richs!\n", NAME, cash);   
+                                                                    return 0;
+                                                               }
+                                                         */
+          此举将不会有这条报警："1>c:\users\xiong2\desktop\98998\98998\98998.cpp(9): warning C4305: “=”: 从“double”到“float”截断"。
+*/
+
+/*
+  原理分析：
+          "#include<stdio.h>"是 c 的一个标准头文件，一般都需要引用；
+          "#define XXX "xxxxxx...""是 c 的提前声明，不仅简洁代码，而且不容易出错；
+          "int main(void)"是 c 的主程序， c 规定一个 .c 的文件一定从这里开始运行————"void"是空的意思，不返回值；
+          "{...}"是主程序包含的代码；
+          "flaot cash"中的"float"是 c 规定的“单精度浮点数”，"cash"是一个变量，这里的意思是定义一个名为cash的变量并在电脑内存中以单精度浮点数的形式分配内存空间；
+          <补充>：现在很多电脑能提供的计算能力越来越强大，x32不再是主流，x64、x86已经成为了新的主流。所以很多计算机在计算"float"（单精度浮点数）数据时，会把它先转变为"double"(双精度浮
+                 点数）数据进行计算，再舍入为"float"数据以得到更精确的数据。 正因为如此，第一份代码能正常运行，但还是会有报错提示，改为double后将解决掉这个问题。
+          "printf(...)"是 c 中的输出函数，它能打印数据，在这里按照要求打印了相关的数据；
+          "return 0"是 c 主程序中必须的一串代码，它表示主程序到这里就结束了。
+*/
+
+//2021年9月24日 23:41:39
+//欢迎在下方补充说明谢谢！
